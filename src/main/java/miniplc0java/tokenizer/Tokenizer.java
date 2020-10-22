@@ -78,17 +78,17 @@ public class Tokenizer {
         // -- 如果是关键字，则返回关键字类型的 token
         // -- 否则，返回标识符
         //
-        System.out.println(str);
+        // System.out.println(str);
         switch (str) {
-            case "begin":
+            case "BEGIN":
                 return new Token(TokenType.Begin, str, it.currentPos(), it.currentPos());
-            case "end":
+            case "END":
                 return new Token(TokenType.End, str, it.currentPos(), it.currentPos());
-            case "var":
+            case "VAR":
                 return new Token(TokenType.Var, str, it.currentPos(), it.currentPos());
-            case "const":
+            case "CONST":
                 return new Token(TokenType.Const, str, it.currentPos(), it.currentPos());
-            case "print":
+            case "PRINT":
                 return new Token(TokenType.Print, str, it.currentPos(), it.currentPos());
             default:
                 return new Token(TokenType.Ident, str, it.currentPos(), it.currentPos());

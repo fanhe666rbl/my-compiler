@@ -54,7 +54,7 @@ public class Tokenizer {
         // 解析成功则返回无符号整数类型的token，否则返回编译错误
         try {
             int num = Integer.valueOf(str);
-            return new Token(TokenType.Uint, num, it.currentPos(), it.currentPos());
+            return new Token(TokenType.Uint, num, it.previousPos(), it.currentPos());
         }
         catch (NumberFormatException e){
             throw new Error("Number Translate Fail");
@@ -79,19 +79,21 @@ public class Tokenizer {
         // -- 否则，返回标识符
         //
         // System.out.println(str);
+
+        // 这里以后可能要改成小写
         switch (str) {
             case "BEGIN":
-                return new Token(TokenType.Begin, str, it.currentPos(), it.currentPos());
+                return new Token(TokenType.Begin, str, it.previousPos(), it.currentPos());
             case "END":
-                return new Token(TokenType.End, str, it.currentPos(), it.currentPos());
+                return new Token(TokenType.End, str, it.previousPos(), it.currentPos());
             case "VAR":
-                return new Token(TokenType.Var, str, it.currentPos(), it.currentPos());
+                return new Token(TokenType.Var, str, it.previousPos(), it.currentPos());
             case "CONST":
-                return new Token(TokenType.Const, str, it.currentPos(), it.currentPos());
+                return new Token(TokenType.Const, str, it.previousPos(), it.currentPos());
             case "PRINT":
-                return new Token(TokenType.Print, str, it.currentPos(), it.currentPos());
+                return new Token(TokenType.Print, str, it.previousPos(), it.currentPos());
             default:
-                return new Token(TokenType.Ident, str, it.currentPos(), it.currentPos());
+                return new Token(TokenType.Ident, str, it.previousPos(), it.currentPos());
         }
         // Token 的 Value 应填写标识符或关键字的字符串
         // throw new Error("Not implemented");
